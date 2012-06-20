@@ -26,7 +26,11 @@ public class GoogleAnalyticsTrackerDelegateImpl implements GoogleAnalyticsTracke
 
   @Override
   public void startNewSession(String accountId, int dispatchPeriod, Context ctx) {
-    tracker.startNewSession(accountId, dispatchPeriod, ctx);
+    if(dispatchPeriod < 0) {
+      tracker.startNewSession(accountId, ctx);        
+    } else {
+      tracker.startNewSession(accountId, dispatchPeriod, ctx);
+    }
   }
 
   @Override
